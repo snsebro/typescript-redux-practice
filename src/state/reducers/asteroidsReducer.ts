@@ -1,33 +1,22 @@
+import { Action } from '../actions/index'
+import { ActionType } from '../actionTypes/index'
+
 interface AsteroidsState {
     loading: boolean;
     error: string | null;
     data: string[];
 }
 
-interface SearchAction {
-    type: 'search_asteroids';
-}
-
-interface SearchSuccessAction {
-    type: 'search_asteroids_success';
-    payload: string[];
-}
-
-interface SearchErrorAction {
-    type: 'search_asteroids_error';
-    payload: string;
-}
-
 const reducer = (
     state: AsteroidsState, 
-    action: SearchAction | SearchSuccessAction | SearchErrorAction
+    action: Action
 ): AsteroidsState => {
     switch (action.type) {
-        case 'search_asteroids':
+        case ActionType.SEARCH_ASTEROIDS:
             return {loading: true, error: null, data: []};
-        case 'search_asteroids_success':
+        case ActionType.SEARCH_ASTEROIDS_SUCCESS:
             return {loading: false, error: null, data: action.payload};
-        case 'search_asteroids_error':
+        case ActionType.SEARCH_ASTEROIDS_ERROR:
             return{loading: false, error: action.payload, data: []};
         default:
             return state;
