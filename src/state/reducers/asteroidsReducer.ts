@@ -7,8 +7,14 @@ interface AsteroidsState {
     data: string[];
 }
 
+const initialState = {
+    loading: false,
+    error: null,
+    data: []
+}
+
 const reducer = (
-    state: AsteroidsState, 
+    state: AsteroidsState = initialState, 
     action: Action
 ): AsteroidsState => {
     switch (action.type) {
